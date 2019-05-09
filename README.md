@@ -5,9 +5,6 @@ This tutorial shows you how to access a simple REST service with ajax
 <html>
 <head>
 <title>City Finder</title>
-<script
-  src="http://code.jquery.com/jquery-3.2.1.min.js">
-</script>
 </head>
 <body>
 <form>
