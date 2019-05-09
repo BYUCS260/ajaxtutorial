@@ -21,37 +21,35 @@ Suggestion: <span id="txtHint">Empty</span>
 </html>
 ```
 
-- Then make sure you can catch the <a href="http://api.jquery.com/keyup/">keyup event</a> and open an alert box.
+- Then make sure you can catch the <a href="http://api.jquery.com/keyup/">keyup event</a> and open an alert box. Put this code at the bottom of your page so that the buttons will be in the document before you try to catch the event.
 
 ```
 <script>
-$(document).ready(function() {
-  $( "#cityField" ).keyup(function() {
-    alert( "Handler for .keyup() called." );
-  });
+document.getElementById("cityField").addEventListener("keyup", function(event) {
+  event.preventDefault();
+  alert( "Handler for .keyup() called." );
 });
 </script>
 ```
 
 - Now prove to yourself that you can modify the txtHint span
 ```
-
-$( "#cityField" ).keyup(function() {
-  $("#txtHint").text("Keyup");
+document.getElementById("cityField").addEventListener("keyup", function(event) {
+  event.preventDefault();
+  document.getElementById("txtHint").innerHTML="Keyup";
 });
-
 ```
 - Now show that you can get the value from the cityField form.
 ```
-
-$( "#cityField" ).keyup(function() {
-  $("#txtHint").text("Keyup "+$("#cityField").val());
+document.getElementById("cityField").addEventListener("keyup", function(event) {
+  event.preventDefault();
+  document.getElementById("txtHint").innerHTML=
+    document.getElementById("cityField").value;
 });
-
 ```
 - At this point you have a dynamic page, but you would like to get some real data to put into the Suggestion span.  Lets start with a baby step and create some fake <a href="http://www.json.org/">JSON</a> data that we can pretend came from a <a href="https://github.com/tfredrich/RestApiTutorial.com/raw/master/media/RESTful%20Best%20Practices-v1_2.pdf">REST</a>ful service.
 <p>
-Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCity.txt">staticCity.txt</a> with the following content:
+Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCity.txt">staticCity.txt</a> on your web server with the following content:
 
 ```
 [
@@ -60,85 +58,65 @@ Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCi
 ]
 ```
 
-You will want to make sure you can read this  array of two city entries before you talk to a live service.
-We are going to show you the <a href="http://api.jquery.com/jquery.getjson/">getJSON</a> shorthand Ajax function 
-
+You will want to make sure you can read this  array of two city entries before you talk to a live REST service.
 ```
-jQuery.getJSON( url [, data ] [, success ] )
-```
-
-which is equivalent to 
-
-```
-$.ajax({
-  dataType: "json",
-  url: url,
-  data: data,
-  success: success
-});
+  const url = "staticCity.txt";
+  fetch(url)
+    .then(function(response) {
+      return response.json();
+    }).then(function(json) {	
+      console.log(json);
+      console.log(json[0]);
+      console.log("Got "+json[0].city);
+    });
 ```
 
 You ought to be familiar with using console.log in conjunction with the <a href="https://developer.chrome.com/devtools">javascript console</a> in your browser to debug your code.
 
-```
-$( "#cityField" ).keyup(function() {
-  $.getJSON("staticCity.txt",function(data) {
-    console.log(data);
-    console.log(data[0]);
-    console.log("Got "+data[0].city);
-  });
-  $("#txtHint").text("Keyup "+$("#cityField").val());
-});
-```
 Open the console in your chrome debugger to see the data that is returned from the Ajax call.
-Notice that we are passing getJSON an anonymous function that will be called when the Ajax response is received.
+
 - Now lets write the response as an unordered list into the Suggestion span with id #txtHint.
 
 ```
   var everything;
   everything = "<ul>";
-  $.each(data, function(i,item) {
-    everything += "<li> "+data[i].city;
+  for (let i=0; i < json.length; i++) {
+    everything += "<li> "+json[i].city;
   });
     
   everything += "</ul>";
-  $("#txtHint").html(everything);
+  document.getElementById("txtHint").innerHTML=everything;
 ```
-- Notice that we are calling the Jquery "each" function.  You can tell when Jquery is being used by the $.  You can find details in the [Jquery documentation](http://api.jquery.com/jquery.each/).
-- Now it is time to call a real RESTful service.  There are a lot of things that could go wrong, so it is a good idea to catch errors so that you can figure out what is wrong. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P.
+- Now it is time to call a real RESTful service.  There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P.
 
 ```
 <script>
-$(document).ready(function() {
-$( "#cityField" ).keyup(function() {
-  $.getJSON("http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=P",function(data) {
-    var everything;
-    everything = "<ul>";
-    $.each(data, function(i,item) {
-      everything += "<li> "+data[i].city;
-    });
-    everything += "</ul>";
-    $("#txtHint").html(everything);
-  })
-  .done(function() { console.log('getJSON request succeeded!'); })
-  .fail(function(jqXHR, textStatus, errorThrown) { 
-    console.log('getJSON request failed! ' + textStatus); 
-    console.log("incoming "+jqXHR.responseText);
-  })
-  .always(function() { console.log('getJSON request ended!');
-  });
-});
+document.getElementById("cityField").addEventListener("keyup", function(event) {
+    event.preventDefault();
+    const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=P";
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            console.log(json);
+            console.log(json[0]);
+            console.log("Got " + json[0].city);
+            var everything;
+            everything = "<ul>";
+            for (let i = 0; i < json.length; i++) {
+                everything += "<li> " + json[i].city;
+            };
+            everything += "</ul>";
+            document.getElementById("txtHint").innerHTML = everything;
+        });
 });
 </script>
 ```
-
-You can chain these callback functions to select the <a href="http://api.jquery.com/jquery.ajax/">events</a> you would like to be notified of.  
-Notice that the fail callback allows you to access the responseText directly.
 - Now we want to pass it the real characters from the form to the REST service.  We will append the characters the user has typed to the end of the URL.
 
 ```
-var url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+$("#cityField").val();
-$.getJSON(url,function(data) {
+const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+
+      document.getElementById("cityField").value;
 ```
 
 - Now you should have a fully working Hint system.  Congratulations!
