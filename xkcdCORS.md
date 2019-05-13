@@ -1,0 +1,29 @@
+'''
+<!DOCTYPE html>
+<html>
+<title>XKCD</title>
+
+<body>
+
+  <p>Current comic</p>
+  <div id="comic">No comic</div>
+</body>
+
+<script>
+  var myurl = "https://cors-anywhere.herokuapp.com";
+  myurl += "/xkcd.com/info.0.json";
+//  var myurl = "https://cors-anywhere.herokuapp.com/xkcd.com/info.0.json";
+  console.log(myurl);
+  fetch(myurl, {mode: 'cors'})
+    .then(function(response) {
+      console.log("I made it here")
+      console.log(response);
+      return response.json();
+    }).then(function(json) {
+      console.log(json);
+      document.getElementById("comic").innerHTML = json["alt"];
+    });
+</script>
+
+</html>
+'''
