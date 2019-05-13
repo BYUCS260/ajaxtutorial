@@ -1,4 +1,4 @@
-'''
+```
 <!DOCTYPE html>
 <html>
 <title>XKCD</title>
@@ -26,4 +26,4 @@
 </script>
 
 </html>
-'''
+```
