@@ -12,7 +12,7 @@
 <script>
   var myurl = "https://xkcd.com/info.0.json";
   console.log(myurl);
-  fetch(myurl, {mode: 'cors'})
+  fetch(myurl)
     .then(function(response) {
       return response.json();
     }).then(function(json) {
