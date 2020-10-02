@@ -82,7 +82,7 @@ Open the console in your chrome debugger to see the data that is returned from t
   everything = "<ul>";
   for (let i=0; i < json.length; i++) {
     everything += "<li> "+json[i].city;
-  });
+  };
     
   everything += "</ul>";
   document.getElementById("txtHint").innerHTML=everything;
