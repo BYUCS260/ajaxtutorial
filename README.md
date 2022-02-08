@@ -36,14 +36,14 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 ```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
-  document.getElementById("txtHint").innerHTML="Keyup";
+  document.getElementById("txtHint").innerHTML = "Keyup";
 });
 ```
 - Now show that you can get the value from the cityField form.
 ```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
-  document.getElementById("txtHint").innerHTML=
+  document.getElementById("txtHint").innerHTML =
     document.getElementById("cityField").value;
 });
 ```
@@ -60,15 +60,15 @@ Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCi
 
 You will want to make sure you can read this  array of two city entries before you talk to a live REST service.
 ```js
-  const url = "staticCity.txt";
-  fetch(url)
-    .then(function(response) {
-      return response.json();
-    }).then(function(json) {	
-      console.log(json);
-      console.log(json[0]);
-      console.log("Got "+json[0].city);
-    });
+const url = "staticCity.txt";
+fetch(url)
+  .then(function(response) {
+    return response.json();
+  }).then(function(json) {	
+    console.log(json);
+    console.log(json[0]);
+    console.log("Got " + json[0].city);
+  });
 ```
 
 You ought to be familiar with using console.log in conjunction with the <a href="https://developer.chrome.com/devtools">javascript console</a> in your browser to debug your code.
@@ -78,14 +78,14 @@ Open the console in your chrome debugger to see the data that is returned from t
 - Now lets write the response as an unordered list into the Suggestion span with id #txtHint.
 
 ```js
-  var everything;
-  everything = "<ul>";
-  for (let i=0; i < json.length; i++) {
-    everything += "<li> "+json[i].city;
-  };
-    
-  everything += "</ul>";
-  document.getElementById("txtHint").innerHTML=everything;
+var everything;
+everything = "<ul>";
+for (let i = 0; i < json.length; i++) {
+  everything += "<li> " + json[i].city;
+};
+
+everything += "</ul>";
+document.getElementById("txtHint").innerHTML = everything;
 ```
 - Now it is time to call a real RESTful service. Found here:
                                 
