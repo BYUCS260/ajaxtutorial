@@ -122,7 +122,7 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 - Now we want to pass it the real characters from the form to the REST service.  We will append the characters the user has typed to the end of the URL.
 
 ```js
-const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+
+const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=" +
       document.getElementById("cityField").value;
 ```
 
