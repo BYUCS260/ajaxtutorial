@@ -1,29 +1,29 @@
 # ajaxtutorial
 This tutorial shows you how to access a simple REST service with ajax
 - Set up your basic page without any actions. Notice that we have put identifiers for each element.
-```
+```html
 <html>
-<head>
-<title>City Finder</title>
-</head>
-<body>
-<form>
-Enter A Utah City: <input type="text" id="cityField" value=""><br>
-Suggestion: <span id="txtHint">Empty</span>
-<input id="weatherButton" type="submit" value="Submit">
-</form>
-<p>City</p>
-<textarea id="displayCity">No City</textarea>
-<p>Current Weather</p>
-<div id="weather">No weather</div>
+    <head>
+        <title>City Finder</title>
+    </head>
+    <body>
+    <form>
+        Enter A Utah City: <input type="text" id="cityField" value=""><br>
+        Suggestion: <span id="txtHint">Empty</span>
+        <input id="weatherButton" type="submit" value="Submit">
+    </form>
+    <p>City</p>
+    <textarea id="displayCity">No City</textarea>
+    <p>Current Weather</p>
+    <div id="weather">No weather</div>
 
-</body>
+    </body>
 </html>
 ```
 
 - Then make sure you can catch the <a href="http://api.jquery.com/keyup/">keyup event</a> and open an alert box. Put this code at the bottom of your page so that the buttons will be in the document before you try to catch the event.
 
-```
+```html
 <script>
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
@@ -33,14 +33,14 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 ```
 
 - Now prove to yourself that you can modify the txtHint span
-```
+```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
   document.getElementById("txtHint").innerHTML="Keyup";
 });
 ```
 - Now show that you can get the value from the cityField form.
-```
+```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
   document.getElementById("txtHint").innerHTML=
@@ -53,13 +53,13 @@ Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCi
 
 ```
 [
-{"city":"Provo"},
-{"city":"Lehi"}
+  {"city":"Provo"},
+  {"city":"Lehi"}
 ]
 ```
 
 You will want to make sure you can read this  array of two city entries before you talk to a live REST service.
-```
+```js
   const url = "staticCity.txt";
   fetch(url)
     .then(function(response) {
@@ -77,7 +77,7 @@ Open the console in your chrome debugger to see the data that is returned from t
 
 - Now lets write the response as an unordered list into the Suggestion span with id #txtHint.
 
-```
+```js
   var everything;
   everything = "<ul>";
   for (let i=0; i < json.length; i++) {
@@ -96,7 +96,7 @@ http://bioresearch.byu.edu/cs260/jquery/getcity.cgi
                                 
 There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P.
 
-```
+```html
 <script>
 document.getElementById("cityField").addEventListener("keyup", function(event) {
     event.preventDefault();
@@ -121,7 +121,7 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 ```
 - Now we want to pass it the real characters from the form to the REST service.  We will append the characters the user has typed to the end of the URL.
 
-```
+```js
 const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q="+
       document.getElementById("cityField").value;
 ```
