@@ -1,4 +1,4 @@
-```
+```html
 <!DOCTYPE html>
 <html>
 <title>GIT Demo</title>
