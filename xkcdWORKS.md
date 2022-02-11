@@ -1,4 +1,4 @@
-```
+```html
 <!DOCTYPE html>
 <html>
 <title>XKCD</title>
@@ -10,7 +10,7 @@
 </body>
 
 <script>
-  var myurl = "https://cors-anywhere.herokuapp.com";
+  const myurl = "https://cors-anywhere.herokuapp.com";
   myurl += "/xkcd.com/info.0.json";
   console.log(myurl);
   fetch(myurl, {mode: 'cors'})
@@ -18,7 +18,10 @@
       return response.json();
     }).then(function(json) {
       console.log(json);
-      document.getElementById("comic").innerHTML = json["alt"];
+      const alt = document.createTextNode(json["alt"]);
+      const container = document.getElementById("comic");
+      container.textContent = "";
+      container.appendChild(alt);
     });
 </script>
 </html>

@@ -36,15 +36,20 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 ```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
-  document.getElementById("txtHint").innerHTML = "Keyup";
+  const value = "Keyup";
+  const txtHint = document.getElementById("txtHint");
+  txtHint.textContent = "";
+  txtHint.appendChild(document.createTextNode(value));
 });
 ```
 - Now show that you can get the value from the cityField form.
 ```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
-  document.getElementById("txtHint").innerHTML =
-    document.getElementById("cityField").value;
+  const value = document.getElementById("cityField").value;
+  const txtHint = document.getElementById("txtHint");
+  txtHint.textContent = "";
+  txtHint.appendChild(document.createTextNode(value));
 });
 ```
 - At this point you have a dynamic page, but you would like to get some real data to put into the Suggestion span.  Lets start with a baby step and create some fake <a href="http://www.json.org/">JSON</a> data that we can pretend came from a <a href="https://github.com/tfredrich/RestApiTutorial.com/raw/master/media/RESTful%20Best%20Practices-v1_2.pdf">REST</a>ful service.
@@ -78,14 +83,17 @@ Open the console in your chrome debugger to see the data that is returned from t
 - Now lets write the response as an unordered list into the Suggestion span with id #txtHint.
 
 ```js
-var everything;
-everything = "<ul>";
+const everything = document.createElement("ul");
 for (let i = 0; i < json.length; i++) {
-  everything += "<li> " + json[i].city;
+  const value = json[i].city;
+  const item = document.createElement("li");
+  item.appendChild(document.createTextNode(value));
+  everything.appendChild(item);
 };
 
-everything += "</ul>";
-document.getElementById("txtHint").innerHTML = everything;
+const txtHint = document.getElementById("txtHint");
+txtHint.textContent = "";
+txtHint.appendChild(everything);
 ```
 - Now it is time to call a real RESTful service. Found here:
                                 
@@ -108,13 +116,16 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
             console.log(json);
             console.log(json[0]);
             console.log("Got " + json[0].city);
-            var everything;
-            everything = "<ul>";
+            const everything = document.createElement("ul");
             for (let i = 0; i < json.length; i++) {
-                everything += "<li> " + json[i].city;
+                const value = json[i].city;
+                const listItem = document.createElement("li");
+                listItem.appendChild(document.createTextNode(value));
+                everything.appendChild(listItem);
             };
-            everything += "</ul>";
-            document.getElementById("txtHint").innerHTML = everything;
+            const txtHint = document.getElementById("txtHint");
+            txtHint.textContent = "";
+            txtHint.appendChild(everything);
         });
 });
 </script>
