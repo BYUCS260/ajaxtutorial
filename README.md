@@ -78,7 +78,7 @@ fetch(url)
 
 You ought to be familiar with using console.log in conjunction with the <a href="https://developer.chrome.com/devtools">javascript console</a> in your browser to debug your code.
 
-Open the console in your chrome debugger to see the data that is returned from the Ajax call.
+Open the console in your chrome debugger to see the data that is returned from the `fetch` call.
 
 - Now let's write the response as an unordered list into the Suggestion span with id #txtHint.
 
