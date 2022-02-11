@@ -36,8 +36,8 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 ```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
-  var value = "Keyup";
-  var txtHint = document.getElementById("txtHint");
+  const value = "Keyup";
+  const txtHint = document.getElementById("txtHint");
   txtHint.textContent = "";
   txtHint.appendChild(document.createTextNode(value));
 });
@@ -46,8 +46,8 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 ```js
 document.getElementById("cityField").addEventListener("keyup", function(event) {
   event.preventDefault();
-  var value = document.getElementById("cityField").value;
-  var txtHint = document.getElementById("txtHint");
+  const value = document.getElementById("cityField").value;
+  const txtHint = document.getElementById("txtHint");
   txtHint.textContent = "";
   txtHint.appendChild(document.createTextNode(value));
 });
@@ -83,15 +83,15 @@ Open the console in your chrome debugger to see the data that is returned from t
 - Now lets write the response as an unordered list into the Suggestion span with id #txtHint.
 
 ```js
-var everything = document.createElement("ul");
+const everything = document.createElement("ul");
 for (let i = 0; i < json.length; i++) {
-  var value = json[i].city;
-  var item = document.createElement("li");
+  const value = json[i].city;
+  const item = document.createElement("li");
   item.appendChild(document.createTextNode(value));
   everything.appendChild(item);
 };
 
-var txtHint = document.getElementById("txtHint");
+const txtHint = document.getElementById("txtHint");
 txtHint.textContent = "";
 txtHint.appendChild(everything);
 ```
@@ -116,14 +116,14 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
             console.log(json);
             console.log(json[0]);
             console.log("Got " + json[0].city);
-            var everything = document.createElement("ul");
+            const everything = document.createElement("ul");
             for (let i = 0; i < json.length; i++) {
-                var value = json[i].city;
-                var listItem = document.createElement("li");
+                const value = json[i].city;
+                const listItem = document.createElement("li");
                 listItem.appendChild(document.createTextNode(value));
                 everything.appendChild(listItem);
             };
-            var txtHint = document.getElementById("txtHint");
+            const txtHint = document.getElementById("txtHint");
             txtHint.textContent = "";
             txtHint.appendChild(everything);
         });

@@ -19,20 +19,20 @@ Github IDs
 <script>
 document.getElementById("userform").addEventListener("submit", function(event) {
     event.preventDefault();
-    var id = document.getElementById("user").value;
+    const id = document.getElementById("user").value;
     console.log("id is",id);
-    var fullURL = "https://api.github.com/users/" + id;
+    const fullURL = "https://api.github.com/users/" + id;
     console.log(fullURL);
     fetch(fullURL)
     .then(function(response) {
       return response.json();
     }).then(function(json) {
       console.log(json);
-      var id = json["id"];
-      var strong = document.createElement("strong");
-      strong.appendChild(document.createTextNode("ID=" + id));
+      const idResponse = json["id"];
+      const strong = document.createElement("strong");
+      strong.appendChild(document.createTextNode("ID=" + idResponse));
       
-      var container = document.getElementById("github");
+      const container = document.getElementById("github");
       container.textContent = "";
       container.appendChild(strong);
     });
