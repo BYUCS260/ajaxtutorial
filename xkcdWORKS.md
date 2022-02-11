@@ -1,4 +1,4 @@
-```
+```html
 <!DOCTYPE html>
 <html>
 <title>XKCD</title>
@@ -18,7 +18,10 @@
       return response.json();
     }).then(function(json) {
       console.log(json);
-      document.getElementById("comic").innerHTML = json["alt"];
+      var alt = document.createTextNode(json["alt"]);
+      var container = document.getElementById("comic");
+      container.textContent = "";
+      container.appendChild(alt);
     });
 </script>
 </html>

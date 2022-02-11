@@ -28,8 +28,13 @@ document.getElementById("userform").addEventListener("submit", function(event) {
       return response.json();
     }).then(function(json) {
       console.log(json);
-      document.getElementById("github").innerHTML = 
-        "<strong>ID= "+json["id"]+"</strong>";
+      var id = json["id"];
+      var strong = document.createElement("strong");
+      strong.appendChild(document.createTextNode("ID=" + id));
+      
+      var container = document.getElementById("github");
+      container.textContent = "";
+      container.appendChild(strong);
     });
   });
 </script>
