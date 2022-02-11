@@ -1,5 +1,5 @@
 # ajaxtutorial
-This tutorial shows you how to access a simple REST service with ajax
+This tutorial shows you how to access a simple REST service with the JavaScript `fetch` command.
 - Set up your basic page without any actions. Notice that we have put identifiers for each element.
 ```html
 <html>
@@ -80,7 +80,7 @@ You ought to be familiar with using console.log in conjunction with the <a href=
 
 Open the console in your chrome debugger to see the data that is returned from the Ajax call.
 
-- Now lets write the response as an unordered list into the Suggestion span with id #txtHint.
+- Now let's write the response as an unordered list into the Suggestion span with id #txtHint.
 
 ```js
 const everything = document.createElement("ul");
