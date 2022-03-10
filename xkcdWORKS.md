@@ -10,7 +10,7 @@
 </body>
 
 <script>
-  const myurl = "https://cors-anywhere.herokuapp.com";
+  var myurl = "https://cors-anywhere.herokuapp.com";
   myurl += "/xkcd.com/info.0.json";
   console.log(myurl);
   fetch(myurl, {mode: 'cors'})
