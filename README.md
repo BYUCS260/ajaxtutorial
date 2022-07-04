@@ -100,7 +100,6 @@ txtHint.appendChild(everything);
 ```
 http://bioresearch.byu.edu/cs260/jquery/getcity.cgi
 ```
-:exclamation: Note that `bioresearch.byu.edu` does not support HTTPS, and so if your server is using Secure Hypertext Transfer Protocol (HTTPS), you must use this URL instead: `https://cs260.click/api/city`.
                                 
 There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P.
 
