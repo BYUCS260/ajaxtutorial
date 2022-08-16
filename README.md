@@ -1,5 +1,5 @@
 # ajaxtutorial
-This tutorial shows you how to access a simple REST service with the JavaScript `fetch` command.
+This tutorial shows you how to access a simple API with the JavaScript `fetch` command.
 - Set up your basic page without any actions. Notice that we have put identifiers for each element.
 ```html
 <html>
@@ -107,7 +107,7 @@ There are a lot of things that could go wrong, so it is a good idea to take baby
 <script>
 document.getElementById("cityField").addEventListener("keyup", function(event) {
     event.preventDefault();
-    const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=P";
+    const url = "https://csonline.byu.edu/city?q=P";
     fetch(url)
         .then(function(response) {
             return response.json();
@@ -132,7 +132,7 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 - Now we want to pass it the real characters from the form to the REST service.  We will append the characters the user has typed to the end of the URL.
 
 ```js
-const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=" +
+const url = "https://csonline.byu.edu/city?q=" +
       document.getElementById("cityField").value;
 ```
 
