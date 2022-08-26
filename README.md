@@ -1,4 +1,4 @@
-# ajaxtutorial
+# API tutorial
 This tutorial shows you how to access a simple API with the JavaScript `fetch` command.
 - Set up your basic page without any actions. Notice that we have put identifiers for each element.
 ```html
