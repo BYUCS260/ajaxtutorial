@@ -98,7 +98,7 @@ txtHint.appendChild(everything);
 - Now it is time to call a real RESTful service. Found here:
                                 
 ```
-http://bioresearch.byu.edu/cs260/jquery/getcity.cgi
+https://csonline.byu.edu/city
 ```
                                 
 There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P.
