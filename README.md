@@ -63,7 +63,7 @@ Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCi
 ]
 ```
 
-You will want to make sure you can read this  array of two city entries before you talk to a live REST service.  Put this code inside your EventListener function.
+You will want to make sure you can read this  array of two city entries before you talk to a live REST service.  Put this code inside your EventListener function right after preventDefault.
 ```js
 const url = "staticCity.txt";
 fetch(url)
@@ -80,7 +80,7 @@ You ought to be familiar with using console.log in conjunction with the <a href=
 
 Open the console in your chrome debugger to see the data that is returned from the `fetch` call.
 
-- Now let's write the response as an unordered list into the Suggestion span with id #txtHint.
+- Now let's write the response as an unordered list into the Suggestion span with id #txtHint.  Put this code inside the function where the console.log calls are.  Notice that fetch returns a promise.  response.json also returns a promise, so the body of the last function where the console.log calls are is where the json object will be available.
 
 ```js
 const everything = document.createElement("ul");
