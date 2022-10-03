@@ -63,7 +63,7 @@ Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCi
 ]
 ```
 
-You will want to make sure you can read this  array of two city entries before you talk to a live REST service.
+You will want to make sure you can read this  array of two city entries before you talk to a live REST service.  Put this code inside your EventListener function.
 ```js
 const url = "staticCity.txt";
 fetch(url)
