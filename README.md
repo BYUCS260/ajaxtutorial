@@ -63,7 +63,7 @@ Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCi
 ]
 ```
 
-You will want to make sure you can read this  array of two city entries before you talk to a live REST service.  Put this code inside your EventListener function right after preventDefault.
+You will want to make sure you can read this  array of two city entries before you talk to a live REST service.  Put this code inside your EventListener function right after preventDefault and comment out the code that modified the txtHint.
 ```js
 const url = "staticCity.txt";
 fetch(url)
@@ -102,7 +102,7 @@ txtHint.appendChild(everything);
 https://csonline.byu.edu/city
 ```
                                 
-There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P.
+There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P on the line with the "const url".
 
 ```html
 <script>
