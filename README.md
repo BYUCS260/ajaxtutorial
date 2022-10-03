@@ -95,6 +95,7 @@ const txtHint = document.getElementById("txtHint");
 txtHint.textContent = "";
 txtHint.appendChild(everything);
 ```
+- Test to make sure you can see all of the cities displayed in the text hint that are in your staticCity.txt file.
 - Now it is time to call a real RESTful service. Found here:
                                 
 ```
