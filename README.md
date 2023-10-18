@@ -98,9 +98,9 @@ txtHint.appendChild(everything);
 - Test to make sure you can see all of the cities displayed in the text hint that are in your staticCity.txt file.
 - Now it is time to call a real RESTful service. Found here:
                                 
-```
+
 [https://csonline.fhtl.org/](https://csonline.fhtl.org/)
-```
+
                                 
 There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P on the line with the "const url".
 
