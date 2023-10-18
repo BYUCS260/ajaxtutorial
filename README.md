@@ -99,7 +99,7 @@ txtHint.appendChild(everything);
 - Now it is time to call a real RESTful service. Found here:
                                 
 ```
-https://csonline.byu.edu/city
+[https://csonline.fhtl.org/](https://csonline.fhtl.org/)
 ```
                                 
 There are a lot of things that could go wrong, so it is a good idea to take baby steps. This service takes a query parameter following ? in the URL.  So lets start by passing it a "P" to get all cities that start with a P on the line with the "const url".
@@ -108,7 +108,7 @@ There are a lot of things that could go wrong, so it is a good idea to take baby
 <script>
 document.getElementById("cityField").addEventListener("keyup", function(event) {
     event.preventDefault();
-    const url = "https://csonline.byu.edu/city?q=P";
+    const url = "https://csonline.fhtl.org/?q=P";
     fetch(url)
         .then(function(response) {
             return response.json();
@@ -133,7 +133,7 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
 - Now we want to pass it the real characters from the form to the REST service.  We will append the characters the user has typed to the end of the URL.
 
 ```js
-const url = "https://csonline.byu.edu/city?q=" +
+const url = "https://csonline.fhtl.org/?q=" +
       document.getElementById("cityField").value;
 ```
 
