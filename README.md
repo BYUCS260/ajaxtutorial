@@ -52,50 +52,6 @@ document.getElementById("cityField").addEventListener("keyup", function(event) {
   txtHint.appendChild(document.createTextNode(value));
 });
 ```
-- At this point you have a dynamic page, but you would like to get some real data to put into the Suggestion span.  Lets start with a baby step and create some fake <a href="http://www.json.org/">JSON</a> data that we can pretend came from a <a href="https://github.com/tfredrich/RestApiTutorial.com/raw/master/media/RESTful%20Best%20Practices-v1_2.pdf">REST</a>ful service.
-<p>
-Create a file <a href="http://students.cs.byu.edu/~clement/CS360/jquery/staticCity.txt">staticCity.txt</a> on your web server with the following content:
-
-```
-[
-  {"city":"Provo"},
-  {"city":"Lehi"}
-]
-```
-
-You will want to make sure you can read this  array of two city entries before you talk to a live REST service.  Put this code inside your EventListener function right after preventDefault and comment out the code that modified the txtHint.
-```js
-const url = "staticCity.txt";
-fetch(url)
-  .then(function(response) {
-    return response.json();
-  }).then(function(json) {	
-    console.log(json);
-    console.log(json[0]);
-    console.log("Got " + json[0].city);
-  });
-```
-
-You ought to be familiar with using console.log in conjunction with the <a href="https://developer.chrome.com/devtools">javascript console</a> in your browser to debug your code.
-
-Open the console in your chrome debugger to see the data that is returned from the `fetch` call.
-
-- Now let's write the response as an unordered list into the Suggestion span with id #txtHint.  Put this code inside the function where the console.log calls are.  Notice that fetch returns a promise.  response.json also returns a promise, so the body of the last function where the console.log calls are is where the json object will be available.
-
-```js
-const everything = document.createElement("ul");
-for (let i = 0; i < json.length; i++) {
-  const value = json[i].city;
-  const item = document.createElement("li");
-  item.appendChild(document.createTextNode(value));
-  everything.appendChild(item);
-};
-
-const txtHint = document.getElementById("txtHint");
-txtHint.textContent = "";
-txtHint.appendChild(everything);
-```
-- Test to make sure you can see all of the cities displayed in the text hint that are in your staticCity.txt file.
 - Now it is time to call a real RESTful service. Found here:
                                 
 
